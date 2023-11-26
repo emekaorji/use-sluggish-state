@@ -1,7 +1,7 @@
 {
-  "name": "typescript-npm-package-template",
+  "name": "use-sluggish-state",
   "version": "0.0.0-development",
-  "description": "A template for creating npm packages using TypeScript and VSCode",
+  "description": "A react hook for setting state after a specific delay, built with typescript in mind.",
   "main": "./lib/index.js",
   "files": [
     "lib/**/*"
@@ -19,37 +19,36 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ryansonshine/typescript-npm-package-template.git"
+    "url": "git+https://github.com/emekaorji/use-sluggish-state.git"
   },
   "license": "MIT",
   "author": {
-    "name": "Ryan Sonshine",
-    "email": "ryansonshine@users.noreply.github.com",
-    "url": "https://github.com/ryansonshine"
+    "name": "Emeka Orji",
+    "email": "emekapraiseo@gmail.com",
+    "url": "https://github.com/emekaorji"
   },
   "engines": {
     "node": ">=12.0"
   },
   "keywords": [
-    "boilerplate",
-    "template",
-    "typescript",
-    "vscode",
-    "jest",
-    "husky",
-    "commitizen",
-    "semantic-release",
-    "codecov"
+    "useState",
+    "useSluggishState",
+    "use-sluggish-state",
+    "delay",
+    "bebounce",
+    "throttle",
+    "defer"
   ],
   "bugs": {
-    "url": "https://github.com/ryansonshine/typescript-npm-package-template/issues"
+    "url": "https://github.com/emekaorji/use-sluggish-state/issues"
   },
-  "homepage": "https://github.com/ryansonshine/typescript-npm-package-template#readme",
+  "homepage": "https://github.com/emekaorji/use-sluggish-state#readme",
   "devDependencies": {
     "@ryansonshine/commitizen": "^4.2.8",
     "@ryansonshine/cz-conventional-changelog": "^3.3.4",
     "@types/jest": "^27.5.2",
     "@types/node": "^12.20.11",
+    "@types/react": "^18.2.38",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
     "conventional-changelog-conventionalcommits": "^5.0.0",
@@ -118,5 +117,8 @@
       "@semantic-release/npm",
       "@semantic-release/github"
     ]
+  },
+  "dependencies": {
+    "react": "^18.2.0"
   }
 }
