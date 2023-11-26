@@ -206,7 +206,7 @@ Type: `Boolean`
 
 The instant updated state not affected by the delay.
 
-Type: Same as in [state]('#state') above
+Type: Same as in [state](#state) above
 
 #### value?
 
