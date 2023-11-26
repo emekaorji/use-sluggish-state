@@ -146,15 +146,43 @@ console.log(owner);
 // => "Bob, Clyde, Bonnie"
 ```
 
+### DEBOUNCE
+
+Achieve Debounce in the simplest way
+
+```js
+import { useDelayedState } from 'use-sluggish-state';
+
+const SomeComponent = () => {
+  const [searchQuery, setSearchQuery, _loading, finalQuery] =
+    useDelayedState('gribble');
+
+  const onChange = event => {
+    setSearchQuery(event.target.value, 1000);
+  };
+
+  useEffect(() => {
+    // fetch will be called only when user has stopped typing for 1 second
+    fetch(`path/to/api?search=${searchQuery}`);
+  }, [searchQuery]);
+
+  return <input value={finalQuery} onChange={onChange} />;
+};
+```
+
 ## API
 
-### const [state, setState] = useDelayedState(value?, delay?)
+### const [state, setState, loading, finalState] = useDelayedState(value?, delay?)
 
 #### state
+
+The state variable initialized by the `value` property passed in the hook
 
 Type: Infered from the value passed in. If no value is passed, it defaults to `undefined`. Also defined by passing in a generic e.g `<boolean>` like in the typescript example above.
 
 #### setState
+
+Function to trigger a state update. Works like the typical react `setState`.
 
 Type:
 
@@ -167,6 +195,18 @@ Dispatch<React.SetStateAction<InferredType>>;
 Dispatch<React.SetStateAction<DefinedType>>;
 // Where `DefinedType` is the generic passed to `useStoreState` i.e boolean, string.
 ```
+
+#### loading
+
+Indicates whether a state update is in progress or not.
+
+Type: `Boolean`
+
+#### finalState
+
+The instant updated state not affected by the delay.
+
+Type: Same as in [state]('#state') above
 
 #### value?
 

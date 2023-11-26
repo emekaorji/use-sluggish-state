@@ -1,4 +1,4 @@
-import { useState, SetStateAction, useCallback } from 'react';
+import { useState, SetStateAction, useCallback, useRef } from 'react';
 
 export type Dispatch<A> = (value: A, _delay?: number) => void;
 
@@ -24,17 +24,21 @@ function useDelayedState<T = undefined>(
   const [state, _setState] = useState(initialState);
   const [loading, setLoading] = useState(false);
   const [endState, setEndState] = useState(initialState);
+  const lastTimeoutId = useRef(0);
 
   const setState = useCallback<Dispatch<SetStateAction<T | undefined>>>(
     (value, _delay) => {
+      if (typeof value !== 'function') {
+        window.clearTimeout(lastTimeoutId.current);
+      }
       const actualDelay = _delay || delay;
 
       setLoading(true);
       setEndState(value);
-      const id = window.setTimeout(() => {
+      lastTimeoutId.current = window.setTimeout(() => {
         _setState(value);
         setLoading(false);
-        window.clearTimeout(id);
+        window.clearTimeout(lastTimeoutId.current);
       }, actualDelay);
     },
     [delay]
