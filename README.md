@@ -188,6 +188,14 @@ Definition:
 type Dispatch<A> = (value: A, _delay?: number) => void;
 ```
 
+Usage:
+
+```ts
+import { type Dispatch } from 'use-sluggish-state';
+
+const customSetState: Dispatch<React.SetStateAction<InferredType>>;
+```
+
 [build-img]: https://github.com/emekaorji/use-sluggish-state/actions/workflows/release.yml/badge.svg
 [build-url]: https://github.com/emekaorji/use-sluggish-state/actions/workflows/release.yml
 [downloads-img]: https://img.shields.io/npm/dt/use-sluggish-state

@@ -3,12 +3,13 @@ import { useState, SetStateAction, useCallback } from 'react';
 export type Dispatch<A> = (value: A, _delay?: number) => void;
 
 function useDelayedState<T>(
-  delay: number,
-  initialState: T | (() => T)
+  initialState: T | (() => T),
+  delay: number
 ): [T, Dispatch<SetStateAction<T>>, boolean, T];
-function useDelayedState<T = undefined>(
-  delay?: number
-): [
+function useDelayedState<T>(
+  initialState: T
+): [T, Dispatch<SetStateAction<T>>, boolean, T | undefined];
+function useDelayedState<T = undefined>(): [
   T | undefined,
   Dispatch<SetStateAction<T | undefined>>,
   boolean,
@@ -17,8 +18,8 @@ function useDelayedState<T = undefined>(
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 function useDelayedState<T = undefined>(
-  delay = 0,
-  initialState?: T | (() => T)
+  initialState?: T | (() => T),
+  delay = 0
 ) {
   const [state, _setState] = useState(initialState);
   const [loading, setLoading] = useState(false);
