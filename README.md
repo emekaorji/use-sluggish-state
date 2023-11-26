@@ -8,7 +8,7 @@
 [![Semantic Release][semantic-release-img]][semantic-release-url]
 [![Package Size][bundlephobia-img]][bundlephobia-url]
 
-# useDelayedState
+# useSluggishState
 
 A react hook for setting state after a specific delay, built with typescript in mind. The basic idea behind this is that you can schedule a state update and if you want perform a transition before the state update completes.
 
@@ -21,9 +21,9 @@ npm install use-sluggish-state
 ## Usage
 
 ```js
-import { useDelayedState } from 'use-sluggish-state';
+import useSluggishState from 'use-sluggish-state';
 
-const [isDarkMode, setIsDarkMode] = useDelayedState(true, 500);
+const [isDarkMode, setIsDarkMode] = useSluggishState(true, 500);
 
 console.log(isDarkMode);
 // => true
@@ -42,9 +42,9 @@ console.log(isDarkMode);
 **OR** with typescript
 
 ```ts
-import { useDelayedState } from 'use-sluggish-state';
+import useSluggishState from 'use-sluggish-state';
 
-const [isVisible, setIsVisible] = useDelayedState<boolean | undefined>(
+const [isVisible, setIsVisible] = useSluggishState<boolean | undefined>(
   true,
   5000
 );
@@ -61,9 +61,9 @@ setIsVisible(false);
 If no generic is passed, the type is also inferred from the initial value, just the same as in react `useState`
 
 ```ts
-import { useDelayedState } from 'use-sluggish-state';
+import useSluggishState from 'use-sluggish-state';
 
-const [isVisible, setIsVisible] = useDelayedState(true, 5000);
+const [isVisible, setIsVisible] = useSluggishState(true, 5000);
 
 // ERROR:
 // Typescript should also throw an error at this
@@ -77,9 +77,9 @@ setIsVisible(false);
 Also allows a callback to be passed as the parameter of `setState`.
 
 ```js
-import { useDelayedState } from 'use-sluggish-state';
+import useSluggishState from 'use-sluggish-state';
 
-const [isDarkMode, setIsDarkMode] = useDelayedState(true, 100);
+const [isDarkMode, setIsDarkMode] = useSluggishState(true, 100);
 
 // Toggle dark mode on/off after 100 milliseconds
 setIsDarkMode(prev => !prev);
@@ -90,9 +90,9 @@ setIsDarkMode(prev => !prev);
 > Note: this does not change the original delay for subsequent `setState` calls
 
 ```js
-import { useDelayedState } from 'use-sluggish-state';
+import useSluggishState from 'use-sluggish-state';
 
-const [showPopup, setShowPopup] = useDelayedState(true, 1000);
+const [showPopup, setShowPopup] = useSluggishState(true, 1000);
 
 // Shows popup after 5 seconds
 setShowPopup(true, 5000);
@@ -104,9 +104,9 @@ setShowPopup(true);
 Calling `setState` with a value does not change the state in the already executing code.
 
 ```js
-import { useDelayedState } from 'use-sluggish-state';
+import useSluggishState from 'use-sluggish-state';
 
-const [names, setNames] = useDelayedState('Bob');
+const [names, setNames] = useSluggishState('Bob');
 
 setNames(names + ', Bonnie');
 setNames(names + ', Clyde', 2000);
@@ -119,9 +119,9 @@ console.log(names);
 However when called with a callback, the previous state since the last `setState` call can be accessed
 
 ```js
-import { useDelayedState } from 'use-sluggish-state';
+import useSluggishState from 'use-sluggish-state';
 
-const [owner, setOwner] = useDelayedState('Bob');
+const [owner, setOwner] = useSluggishState('Bob');
 
 setNames(prev => prev + ', Bonnie');
 setNames(prev => prev + ', Clyde', 2000);
@@ -134,9 +134,9 @@ console.log(owner);
 > Note: the state updates occur in the order of the delay `setState` is called with
 
 ```js
-import { useDelayedState } from 'use-sluggish-state';
+import useSluggishState from 'use-sluggish-state';
 
-const [owner, setOwner] = useDelayedState('Bob');
+const [owner, setOwner] = useSluggishState('Bob');
 
 setNames(prev => prev + ', Bonnie', 3000);
 setNames(prev => prev + ', Clyde', 2000);
@@ -151,11 +151,11 @@ console.log(owner);
 Achieve Debounce in the simplest way
 
 ```js
-import { useDelayedState } from 'use-sluggish-state';
+import useSluggishState from 'use-sluggish-state';
 
 const SomeComponent = () => {
   const [searchQuery, setSearchQuery, _loading, finalQuery] =
-    useDelayedState('gribble');
+    useSluggishState('gribble');
 
   const onChange = event => {
     setSearchQuery(event.target.value, 1000);
@@ -172,7 +172,7 @@ const SomeComponent = () => {
 
 ## API
 
-### const [state, setState, loading, finalState] = useDelayedState(value?, delay?)
+### const [state, setState, loading, finalState] = useSluggishState(value?, delay?)
 
 #### state
 
